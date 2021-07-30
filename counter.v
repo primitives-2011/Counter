@@ -31,6 +31,38 @@ assign Flag = Counter[ Data_Width - 1 ];
 endmodule
 
 
+
+module Counter2_181(
+	//input
+	input		Clk,Rst_n,
+	input		Counter_En,
+	//output
+	output	Flag
+);
+
+//wire define
+
+
+//reg define
+	reg	[7:0]	Counter;
+
+//RTL
+
+always @(posedge Clk,negedge Rst_n)
+	if(!Rst_n)
+		Counter <= 0;
+	else if(Counter_En)
+		Counter <= 49;
+	else if(Counter[7] != 1'b1)
+		Counter <= Counter - 1'b1;
+	else
+		Counter <= Counter;
+		
+assign Flag = Counter[7];
+
+endmodule
+
+
 module Counter3_181(
 	//input
 	input		Clk,Rst_n,
